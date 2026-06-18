@@ -1,0 +1,50 @@
+openapi: 3.0.1
+
+info:
+  title: Website Scraper API
+  description: Scrapes a company website and returns content for analysis.
+  version: 1.0.0
+
+servers:
+  - url: https://website-scraper-zf91.onrender.com
+
+paths:
+  /scrape:
+    get:
+      operationId: scrapeWebsite
+      summary: Scrape a website
+
+      parameters:
+        - name: url
+          in: query
+          required: true
+          description: Company website URL
+          schema:
+            type: string
+
+      responses:
+        "200":
+          description: Website content successfully retrieved
+
+          content:
+            application/json:
+              schema:
+                type: object
+
+                properties:
+                  website:
+                    type: string
+
+                  title:
+                    type: string
+
+                  description:
+                    type: string
+
+                  full_text:
+                    type: string
+
+                  links:
+                    type: array
+                    items:
+                      type: string
